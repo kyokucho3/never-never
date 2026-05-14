@@ -1,0 +1,39 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Pagination from "../../components/Pagination.astro";
+import type { GetStaticPathsOptions } from "astro";
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+    const allTanka = await getCollection("tanka");
+    const orderedTanka = allTanka.sort((a, b) => b.data.id - a.data.id);
+    return paginate(orderedTanka, { pageSize: 10 });
+}
+---
+
+<Layout title="短歌 — never-never">
+    <div class="container">
+        <div class="page-header">
+            <h1>短歌</h1>
+            <p>三十一文字の記録。</p>
+        </div>
+        <div class="tanka-list">
+            {
+                Astro.props.page.data.map((t) => (
+                    <article class="tanka-item">
+                        <a href={`/tanka/${t.id}`}>
+                            <p class="tanka-body">{t.data.body}</p>
+                        </a>
+                        <p class="tanka-meta">{t.data.date}</p>
+                        {t.data.note && (
+                            <p class="tanka-note-preview">
+                                {t.data.note.slice(0, 60)}…
+                            </p>
+                        )}
+                    </article>
+                ))
+            }
+        </div>
+        <Pagination lastPage={Astro.props.page.lastPage} basePath="/tanka" />
+    </div>
+</Layout>

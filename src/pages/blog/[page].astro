@@ -1,0 +1,35 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Pagination from "../../components/Pagination.astro";
+import type { GetStaticPathsOptions } from "astro";
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+    const allBlogs = await getCollection("blog");
+    const orderedBlogs = allBlogs.sort((a, b) => b.data.id - a.data.id);
+    return paginate(orderedBlogs, { pageSize: 5 });
+}
+---
+
+<Layout title="雑記 — never-never">
+    <div class="container">
+        <div class="page-header">
+            <h1>雑記</h1>
+            <p>日々のこと、思ったこと。</p>
+        </div>
+        <div class="post-list">
+            {
+                Astro.props.page.data.map((post) => (
+                    <article class="post-item">
+                        <h2>
+                            <a href={`/blog/${post.id}`}>{post.data.title}</a>
+                        </h2>
+                        <p class="post-meta">{post.data.date}</p>
+                        <p class="post-excerpt">{post.data.excerpt}</p>
+                    </article>
+                ))
+            }
+        </div>
+        <Pagination lastPage={Astro.props.page.lastPage} basePath="/blog" />
+    </div>
+</Layout>

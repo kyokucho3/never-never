@@ -1,0 +1,35 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import PrevNext from "../../components/PrevNext.astro";
+
+export async function getStaticPaths() {
+    const allTanka = await getCollection("tanka");
+    return allTanka.map((t) => ({
+        params: { id: t.id },
+        props: { tanka: t },
+    }));
+}
+
+const { tanka } = Astro.props;
+const allTanka = await getCollection("tanka");
+const prev = allTanka.filter((t) => t.data.id === tanka.data.id - 1);
+const next = allTanka.filter((t) => t.data.id === tanka.data.id + 1);
+---
+
+<Layout title={`${tanka.data.title ?? tanka.data.body.slice(0, 12)} — never-never`}>
+    <div class="container">
+        <div class="tanka-single">
+            <p class="tanka-body">{tanka.data.body}</p>
+            <p class="tanka-meta">{tanka.data.date}</p>
+            {
+                tanka.data.note && (
+                    <div class="tanka-note">
+                        <p>{tanka.data.note}</p>
+                    </div>
+                )
+            }
+        </div>
+        <PrevNext prev={prev} next={next} basePath="/tanka" />
+    </div>
+</Layout>

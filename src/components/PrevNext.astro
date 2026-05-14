@@ -1,0 +1,30 @@
+---
+interface Props {
+    prev: any[];
+    next: any[];
+    basePath: string;
+}
+const { prev, next, basePath } = Astro.props;
+
+const getLabel = (item: any) =>
+    item.data.title ?? item.data.body?.slice(0, 20) ?? "…";
+---
+
+<div class="prev-next">
+    {
+        prev.length > 0 && (
+            <a href={`${basePath}/${prev[0].id}`} class="prev">
+                <span class="direction">← 前</span>
+                {getLabel(prev[0])}
+            </a>
+        )
+    }
+    {
+        next.length > 0 && (
+            <a href={`${basePath}/${next[0].id}`} class="next">
+                <span class="direction">次 →</span>
+                {getLabel(next[0])}
+            </a>
+        )
+    }
+</div>

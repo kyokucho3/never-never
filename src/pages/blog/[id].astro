@@ -1,0 +1,32 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import PrevNext from "../../components/PrevNext.astro";
+
+export async function getStaticPaths() {
+    const allBlogs = await getCollection("blog");
+    return allBlogs.map((post) => ({
+        params: { id: post.id },
+        props: { post },
+    }));
+}
+
+const { post } = Astro.props;
+const allBlogs = await getCollection("blog");
+const prev = allBlogs.filter((b) => b.data.id === post.data.id - 1);
+const next = allBlogs.filter((b) => b.data.id === post.data.id + 1);
+const { Content } = await render(post);
+---
+
+<Layout title={`${post.data.title} — never-never`}>
+    <div class="container">
+        <div class="article-header">
+            <h1>{post.data.title}</h1>
+            <p class="article-meta">{post.data.date}</p>
+        </div>
+        <div class="article-body">
+            <Content />
+        </div>
+        <PrevNext prev={prev} next={next} basePath="/blog" />
+    </div>
+</Layout>

@@ -1,0 +1,26 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const tankaList = await getCollection("tanka");
+const tanka = tankaList[Math.floor(Math.random() * tankaList.length)];
+---
+
+<Layout title="never-never">
+    <div class="container">
+        <div class="home">
+            <h1>never-never</h1>
+            <p class="description">
+                短歌と雑記をおいていく場所。<br />
+                ほそぼそ、もそもそ。
+            </p>
+            <div class="home-links">
+                <a href="/tanka">短歌</a>
+                <a href="/blog">雑記</a>
+            </div>
+            <div class="home-tanka">
+                <a href={`/tanka/${tanka.id}`} class="home-tanka-body">{tanka.data.body}</a>
+            </div>
+        </div>
+    </div>
+</Layout>

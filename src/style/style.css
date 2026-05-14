@@ -1,0 +1,390 @@
+/* Global */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap');
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-weight: 500;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Header */
+header {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    z-index: 10;
+}
+
+header .inner {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+header .site-title {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #333;
+    margin-right: auto;
+}
+
+header nav a {
+    color: #777;
+    font-size: 1.4rem;
+    margin-left: 2.4rem;
+}
+
+header nav a:hover {
+    color: #333;
+}
+
+/* Footer */
+footer {
+    border-top: 1px solid #eee;
+    padding: 4rem 0;
+    text-align: center;
+    color: #aaa;
+    font-size: 1.3rem;
+    margin-top: 8rem;
+}
+
+/* Index */
+.home {
+    padding: 10rem 0 8rem;
+}
+
+.home h1 {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+}
+
+.home .description {
+    font-size: 1.6rem;
+    color: #777;
+    margin-bottom: 4.8rem;
+    line-height: 2;
+}
+
+.home-tanka {
+    margin: 4.8rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+.home-tanka-body {
+    writing-mode: vertical-rl;
+    font-size: 2rem;
+    line-height: 1.9;
+    letter-spacing: 0.12em;
+    color: #444;
+    text-decoration: none;
+    white-space: nowrap;
+    margin: 0;
+    transition: opacity 0.2s;
+}
+
+.home-tanka-body:hover {
+    opacity: 0.6;
+}
+
+.home-links {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.home-links a {
+    display: inline-block;
+    padding: 1rem 3rem;
+    border: 1px solid #ccc;
+    color: #555;
+    font-size: 1.4rem;
+    border-radius: 4px;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.home-links a:hover {
+    border-color: #333;
+    color: #333;
+}
+
+/* Page header */
+.page-header {
+    padding: 6rem 0 3rem;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 0;
+}
+
+.page-header h1 {
+    font-size: 2.4rem;
+    margin-bottom: 0.6rem;
+}
+
+.page-header p {
+    color: #aaa;
+    font-size: 1.4rem;
+}
+
+/* Blog list */
+.post-list {
+    padding-bottom: 4rem;
+}
+
+.post-item {
+    padding: 3.2rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.post-item h2 {
+    font-size: 1.9rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.5;
+}
+
+.post-item h2 a {
+    color: inherit;
+}
+
+.post-item h2 a:hover {
+    opacity: 0.7;
+}
+
+.post-meta {
+    color: #bbb;
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+}
+
+.post-excerpt {
+    color: #666;
+    line-height: 1.8;
+    font-size: 1.5rem;
+}
+
+/* Tanka list */
+.tanka-list {
+    padding-bottom: 4rem;
+}
+
+.tanka-item {
+    padding: 4rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.tanka-item a {
+    color: inherit;
+    display: block;
+}
+
+.tanka-item a:hover .tanka-body {
+    opacity: 0.6;
+}
+
+.tanka-body {
+    font-size: 2rem;
+    line-height: 1.9;
+    margin-bottom: 1rem;
+    letter-spacing: 0.08em;
+}
+
+.tanka-meta {
+    color: #bbb;
+    font-size: 1.3rem;
+}
+
+.tanka-note-preview {
+    color: #999;
+    font-size: 1.4rem;
+    margin-top: 0.8rem;
+}
+
+/* Single blog */
+.article-header {
+    padding: 6rem 0 3.2rem;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 3.2rem;
+}
+
+.article-header h1 {
+    font-size: 2.8rem;
+    line-height: 1.45;
+    margin-bottom: 1rem;
+}
+
+.article-meta {
+    color: #bbb;
+    font-size: 1.3rem;
+}
+
+.article-body {
+    padding-bottom: 4rem;
+    line-height: 2;
+    font-size: 1.6rem;
+}
+
+.article-body p {
+    margin-bottom: 1.6rem;
+}
+
+.article-body h2 {
+    font-size: 2rem;
+    margin: 4rem 0 1.2rem;
+}
+
+.article-body h3 {
+    font-size: 1.7rem;
+    margin: 3rem 0 1rem;
+}
+
+/* Single tanka */
+.tanka-single {
+    padding: 8rem 0 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tanka-single .tanka-body {
+    writing-mode: vertical-rl;
+    font-size: 3rem;
+    line-height: 1.8;
+    margin-bottom: 3.2rem;
+    letter-spacing: 0.1em;
+}
+
+.tanka-single .tanka-meta {
+    color: #bbb;
+    font-size: 1.3rem;
+    margin-bottom: 3.2rem;
+}
+
+.tanka-note {
+    color: #666;
+    font-size: 1.5rem;
+    line-height: 1.9;
+    border-left: 3px solid #e0e0e0;
+    padding-left: 1.6rem;
+    align-self: stretch;
+}
+
+/* Pagination */
+.pagination {
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.pagination a {
+    color: #777;
+    padding: 0.7rem 1.2rem;
+    margin: 0 0.3rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1.4rem;
+    display: inline-block;
+}
+
+.pagination a:hover {
+    background-color: #f5f5f5;
+    border-color: #ccc;
+}
+
+/* PrevNext */
+.prev-next {
+    display: flex;
+    gap: 1.2rem;
+    padding: 4rem 0 6rem;
+    border-top: 1px solid #eee;
+    margin-top: 2rem;
+}
+
+.prev-next a {
+    flex: 1;
+    padding: 2rem;
+    border: 1px solid #eee;
+    color: #444;
+    font-size: 1.4rem;
+    line-height: 1.6;
+    border-radius: 4px;
+    display: block;
+}
+
+.prev-next a:hover {
+    background-color: #fafafa;
+    border-color: #ccc;
+}
+
+.prev-next .prev {
+    text-align: left;
+}
+
+.prev-next .next {
+    text-align: right;
+}
+
+.prev-next .direction {
+    display: block;
+    color: #bbb;
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+}
+
+/* Media Queries */
+@media (max-width: 600px) {
+    .home h1 {
+        font-size: 3rem;
+    }
+
+    .tanka-body {
+        font-size: 1.9rem;
+    }
+
+    .tanka-single .tanka-body {
+        font-size: 2.2rem;
+    }
+
+    .prev-next {
+        flex-direction: column;
+    }
+
+    .prev-next .next {
+        text-align: left;
+    }
+}
