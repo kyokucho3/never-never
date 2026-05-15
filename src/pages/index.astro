@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 
 const tankaList = await getCollection("tanka");
-const tanka = tankaList[Math.floor(Math.random() * tankaList.length)];
+const tankaData = tankaList.map((t) => ({ id: t.id, body: t.data.body }));
 ---
 
 <Layout title="never-never">
@@ -19,8 +19,15 @@ const tanka = tankaList[Math.floor(Math.random() * tankaList.length)];
                 <a href="/blog">雑記</a>
             </div>
             <div class="home-tanka">
-                <a href={`/tanka/${tanka.id}`} class="home-tanka-body">{tanka.data.body}</a>
+                <a id="home-tanka-link" href="#" class="home-tanka-body"></a>
             </div>
         </div>
     </div>
 </Layout>
+
+<script define:vars={{ tankaData }} is:inline>
+    const tanka = tankaData[Math.floor(Math.random() * tankaData.length)];
+    const link = document.getElementById("home-tanka-link");
+    link.href = `/tanka/${tanka.id}`;
+    link.textContent = tanka.body;
+</script>
