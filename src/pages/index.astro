@@ -26,8 +26,12 @@ const tankaData = tankaList.map((t) => ({ id: t.id, body: t.data.body }));
 </Layout>
 
 <script define:vars={{ tankaData }} is:inline>
-    const tanka = tankaData[Math.floor(Math.random() * tankaData.length)];
-    const link = document.getElementById("home-tanka-link");
-    link.href = `/tanka/${tanka.id}`;
-    link.textContent = tanka.body;
+    document.addEventListener("astro:page-load", () => {
+        const tanka = tankaData[Math.floor(Math.random() * tankaData.length)];
+        const link = document.getElementById("home-tanka-link");
+        if (link) {
+            link.href = `/tanka/${tanka.id}`;
+            link.textContent = tanka.body;
+        }
+    });
 </script>
