@@ -6,8 +6,22 @@ import Footer from "../components/Footer.astro";
 
 interface Props {
     title: string;
+    description?: string;
+    ogTitle?: string;
 }
-const { title } = Astro.props;
+
+const SITE_URL = "https://kyokucho3.com";
+const SITE_NAME = "never never";
+const DEFAULT_DESCRIPTION = "短歌と雑記のサイト";
+
+const {
+    title,
+    description = DEFAULT_DESCRIPTION,
+    ogTitle = title,
+} = Astro.props;
+
+const ogImageUrl = `${SITE_URL}/ogp.png`;
+const canonicalUrl = new URL(Astro.url.pathname, SITE_URL).href;
 ---
 
 <!doctype html>
@@ -19,6 +33,18 @@ const { title } = Astro.props;
         <link rel="icon" href="/favicon.ico" />
         <meta name="generator" content={Astro.generator} />
         <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={SITE_NAME} />
+        <meta property="og:title" content={ogTitle} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={ogImageUrl} />
+        <meta property="og:locale" content="ja_JP" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={ogTitle} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImageUrl} />
         <ClientRouter />
     </head>
     <body transition:animate="fade">
