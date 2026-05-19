@@ -18,7 +18,10 @@ const prev = allTanka.filter((t) => t.data.id === tanka.data.id - 1);
 const next = allTanka.filter((t) => t.data.id === tanka.data.id + 1);
 ---
 
-<Layout title={`${tanka.data.title ?? tanka.data.body.slice(0, 12)} — never-never`}>
+<Layout
+    title={`${tanka.data.title ?? tanka.data.body.slice(0, 12)} — never-never`}
+    ogTitle={`${tanka.data.body}`}
+>
     <div class="container">
         <div class="tanka-single">
             <p class="tanka-body">{tanka.data.body}</p>
