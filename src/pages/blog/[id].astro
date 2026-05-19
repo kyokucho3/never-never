@@ -20,8 +20,8 @@ const { Content } = await render(post);
 
 <Layout
     title={`${post.data.title} — never-never`}
-    ogTitle={`${post.data.title}`}
-    description={`${post.data.excerpt}`}
+    ogTitle={post.data.title}
+    description={post.data.excerpt}
 >
     <div class="container">
         <div class="article-header">
