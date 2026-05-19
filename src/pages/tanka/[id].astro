@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import PrevNext from "../../components/PrevNext.astro";
+import ShareButtons from "../../components/ShareButtons.astro";
 
 export async function getStaticPaths() {
     const allTanka = await getCollection("tanka");
@@ -30,6 +31,7 @@ const next = allTanka.filter((t) => t.data.id === tanka.data.id + 1);
                 )
             }
         </div>
+        <ShareButtons url={Astro.url.href} body={tanka.data.body} />
         <PrevNext prev={prev} next={next} basePath="/tanka" />
     </div>
 </Layout>

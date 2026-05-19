@@ -305,6 +305,35 @@ footer {
     align-self: stretch;
 }
 
+/* Share buttons */
+.share-buttons {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem 0 4rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.share-label {
+    color: #bbb;
+    font-size: 1.3rem;
+}
+
+.share-btn {
+    color: #777;
+    font-size: 1.4rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+    transition: color 0.2s;
+}
+
+.share-btn:hover {
+    color: #333;
+}
+
 /* Pagination */
 .pagination {
     text-align: center;

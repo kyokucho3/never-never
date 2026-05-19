@@ -1,0 +1,64 @@
+---
+interface Props {
+    url: string;
+    body: string;
+}
+
+const { url, body } = Astro.props;
+const shareText = `${body}　|　中野りえん\n#短歌`;
+const xUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`;
+const bskyUrl = `https://bsky.app/intent/compose?text=${encodeURIComponent(shareText + "\n" + url)}`;
+---
+
+<div class="share-buttons">
+    <span class="share-label">share</span>
+    <a href={xUrl} target="_blank" rel="noopener noreferrer" class="share-btn"
+        >X</a
+    >
+    <a
+        href={bskyUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="share-btn">Bluesky</a
+    >
+    <button class="share-btn" id="mastodon-btn">Mastodon</button>
+    <button class="share-btn" id="copy-btn">URLコピー</button>
+</div>
+
+<script define:vars={{ shareText, url }}>
+    document.addEventListener("astro:page-load", () => {
+        const mastodonBtn = document.getElementById("mastodon-btn");
+        if (mastodonBtn) {
+            mastodonBtn.addEventListener("click", () => {
+                let instance = localStorage.getItem("mastodon-instance");
+                if (!instance) {
+                    instance = prompt(
+                        "MastodonのインスタンスURLを入力してください\n例: mastodon.social",
+                    );
+                    if (!instance) return;
+                    instance = instance
+                        .replace(/^https?:\/\//, "")
+                        .replace(/\/$/, "");
+                    localStorage.setItem("mastodon-instance", instance);
+                }
+                const text = encodeURIComponent(shareText + "\n" + url);
+                window.open(
+                    `https://${instance}/share?text=${text}`,
+                    "_blank",
+                    "noopener,noreferrer",
+                );
+            });
+        }
+
+        const copyBtn = document.getElementById("copy-btn");
+        if (copyBtn) {
+            copyBtn.addEventListener("click", async () => {
+                await navigator.clipboard.writeText(url);
+                copyBtn.textContent = "コピーしました";
+                setTimeout(() => {
+                    copyBtn.textContent = "URLコピー";
+                }, 2000);
+            });
+        }
+    });
+</script>
