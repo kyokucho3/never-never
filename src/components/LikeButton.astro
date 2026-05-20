@@ -23,7 +23,7 @@ const { articleId } = Astro.props;
     const isLiked = () => localStorage.getItem(storageKey) === "1";
 
     function applyLikedState(liked: boolean) {
-      icon.textContent = liked ? "♥" : "♡";
+      icon.textContent = liked ? "★" : "☆";
       btn.classList.toggle("liked", liked);
     }
 
