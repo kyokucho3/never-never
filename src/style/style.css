@@ -334,6 +334,41 @@ footer {
     color: #333;
 }
 
+/* Like button */
+.like-area {
+    padding: 2rem 0;
+}
+
+.like-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: none;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 0.6rem 1.4rem;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1.4rem;
+    color: #999;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.like-btn:hover {
+    border-color: #f08;
+    color: #f08;
+}
+
+.like-btn.liked {
+    border-color: #f08;
+    color: #f08;
+}
+
+.like-icon {
+    font-size: 1.6rem;
+    line-height: 1;
+}
+
 /* Pagination */
 .pagination {
     text-align: center;

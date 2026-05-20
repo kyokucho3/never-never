@@ -1,0 +1,8 @@
+name = "never-never"
+compatibility_date = "2024-09-23"
+pages_build_output_dir = "dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "never-never-likes"
+database_id = "25d4754a-e8f1-4ee3-87b3-f5ecc96c856f"

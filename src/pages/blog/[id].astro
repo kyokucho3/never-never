@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import PrevNext from "../../components/PrevNext.astro";
+import LikeButton from "../../components/LikeButton.astro";
 
 export async function getStaticPaths() {
     const allBlogs = await getCollection("blog");
@@ -31,6 +32,7 @@ const { Content } = await render(post);
         <div class="article-body">
             <Content />
         </div>
+        <LikeButton articleId={post.id} />
         <PrevNext prev={prev} next={next} basePath="/blog" />
     </div>
 </Layout>

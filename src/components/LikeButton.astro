@@ -1,0 +1,60 @@
+---
+interface Props {
+  articleId: string;
+}
+const { articleId } = Astro.props;
+---
+
+<div class="like-area" data-article-id={articleId}>
+  <button class="like-btn" aria-label="いいね">
+    <span class="like-icon">♡</span>
+    <span class="like-count">…</span>
+  </button>
+</div>
+
+<script>
+  function initLikeButton(area: HTMLElement) {
+    const articleId = area.dataset.articleId!;
+    const btn = area.querySelector<HTMLButtonElement>(".like-btn")!;
+    const icon = area.querySelector<HTMLSpanElement>(".like-icon")!;
+    const countEl = area.querySelector<HTMLSpanElement>(".like-count")!;
+    const storageKey = `liked:${articleId}`;
+
+    const isLiked = () => localStorage.getItem(storageKey) === "1";
+
+    function applyLikedState(liked: boolean) {
+      icon.textContent = liked ? "♥" : "♡";
+      btn.classList.toggle("liked", liked);
+    }
+
+    // 初期表示: いいね数を取得
+    fetch(`/api/like/${articleId}`)
+      .then((r) => r.json())
+      .then((data: { count: number }) => {
+        countEl.textContent = String(data.count);
+        applyLikedState(isLiked());
+      })
+      .catch(() => {
+        countEl.textContent = "-";
+      });
+
+    btn.addEventListener("click", () => {
+      if (isLiked()) return; // 重複防止
+
+      fetch(`/api/like/${articleId}`, { method: "POST" })
+        .then((r) => r.json())
+        .then((data: { count: number }) => {
+          localStorage.setItem(storageKey, "1");
+          countEl.textContent = String(data.count);
+          applyLikedState(true);
+        });
+    });
+  }
+
+  // ページ遷移後も動くように document-swap イベントに対応
+  document.addEventListener("astro:page-load", () => {
+    document
+      .querySelectorAll<HTMLElement>(".like-area")
+      .forEach(initLikeButton);
+  });
+</script>

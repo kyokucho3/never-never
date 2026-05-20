@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\hator\\\\Desktop\\\\20250526\\\\作業中\\\\HP\\\\never-never\" -Recurse -Directory)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(grep -E \"\\\\.\\(ts|tsx|js|jsx|md|astro\\)$\")"
+    ]
+  }
+}
