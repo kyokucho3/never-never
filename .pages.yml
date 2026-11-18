@@ -18,7 +18,7 @@ content:
     operations:
       rename: false
     view:
-      primary: body
+      primary: text
       fields: [date, note]
     fields:
       - name: id
@@ -29,7 +29,7 @@ content:
         label: 詠んだ日
         type: date
         format: "yyyy-MM-dd"
-      - name: body
+      - name: text
         label: 短歌本文
         type: string
         required: true

@@ -1,6 +1,7 @@
 import { defineCollection } from "astro:content";
 import { z } from "zod";
 import { glob } from "astro/loaders";
+import { text } from "itty-router";
 
 const blog = defineCollection({
     loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/blog" }),
@@ -19,7 +20,8 @@ const tanka = defineCollection({
         id: z.number(),
         title: z.string().optional(),
         date: z.string(),
-        body: z.string(),
+        text: z.string().optional,
+        body: z.string().optional,
         note: z.string().optional(),
     }),
 });
