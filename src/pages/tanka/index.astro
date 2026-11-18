@@ -21,7 +21,7 @@ const lastPage = Math.ceil(orderedTanka.length / pageSize);
                 limitedTanka.map((t) => (
                     <article class="tanka-item">
                         <a href={`/tanka/${t.id}`}>
-                            <p class="tanka-body">{t.data.body}</p>
+                            <p class="tanka-body">{t.data.body ?? t.data.text ?? ""}</p>
                         </a>
                         <p class="tanka-meta">{t.data.date}</p>
                         {t.data.note && (

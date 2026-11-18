@@ -24,7 +24,7 @@ const tanka = defineCollection({
         title: z.string().optional(),
         date: dateString,
         text: z.string().optional(),
-        body: z.string().optional,
+        body: z.string().optional(),
         note: z.string().optional(),
     }),
 });

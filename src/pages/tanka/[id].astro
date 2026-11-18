@@ -17,16 +17,18 @@ const { tanka } = Astro.props;
 const allTanka = await getCollection("tanka");
 const prev = allTanka.filter((t) => t.data.id === tanka.data.id - 1);
 const next = allTanka.filter((t) => t.data.id === tanka.data.id + 1);
+
+const tankaText = tanka.data.body ?? tanka.data.text ?? "";
 ---
 
 <Layout
-    title={`${tanka.data.title ?? tanka.data.body.slice(0, 12)} — never-never`}
-    ogTitle={tanka.data.body}
-    description={tanka.data.body}
+    title={`${tanka.data.title ?? tankaText.slice(0, 12)} — never-never`}
+    ogTitle={tankaText}
+    description={tankaText}
 >
     <div class="container">
         <div class="tanka-single">
-            <p class="tanka-body">{tanka.data.body}</p>
+            <p class="tanka-body">{tankaText}</p>
             <p class="tanka-meta">{tanka.data.date}</p>
             {
                 tanka.data.note && (
@@ -37,7 +39,7 @@ const next = allTanka.filter((t) => t.data.id === tanka.data.id + 1);
             }
         </div>
         <LikeButton articleId={tanka.id} />
-        <ShareButtons url={Astro.url.href} body={tanka.data.body} />
+        <ShareButtons url={Astro.url.href} body={tankaText} />
         <PrevNext prev={prev} next={next} basePath="/tanka" />
     </div>
 </Layout>

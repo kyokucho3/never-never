@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 
 const tankaList = await getCollection("tanka");
-const tankaData = tankaList.map((t) => ({ id: t.id, body: t.data.body }));
+const tankaData = tankaList.map((t) => ({ id: t.id, body: t.data.body ?? t.data.text ?? "" }));
 ---
 
 <Layout title="never-never">
