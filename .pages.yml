@@ -1,5 +1,4 @@
 # .pages.yml - Pages CMS configuration for kyokucho3.com
-# Place this file in the root of your repository (same level as package.json)
 
 media:
   input: public/images
@@ -11,18 +10,17 @@ content:
     label: 短歌
     type: collection
     path: src/content/tanka
-    # ファイル名はslugを手入力（例: 11th.md, summer-rain.md）
+    # 初期値は日時で自動生成。新規作成時だけ入力欄が出て上書きできる
     filename:
-      template: "{primary}.md"
-      field: slug
+      template: "{year}{month}{day}-{hour}{minute}{second}.md"
+      field: create
+    # 既存ファイルを編集・保存してもファイル名は変わらない
+    operations:
+      rename: false
     view:
       primary: body
       fields: [date, note]
     fields:
-      - name: slug
-        label: URL名
-        type: string
-        required: true
       - name: id
         label: ID（連番）
         type: number
@@ -44,15 +42,15 @@ content:
     label: 雑記
     type: collection
     path: src/content/blog
-    # ファイル名はslugを手入力（例: tsukanoma.md, first-post.md）
     filename:
-      template: "{primary}.md"
-      field: slug
+      template: "{year}{month}{day}-{hour}{minute}{second}.md"
+      field: create
+    operations:
+      rename: false
+    view:
+      primary: title
+      fields: [date, excerpt]
     fields:
-      - name: slug
-        label: URL名
-        type: string
-        required: true
       - name: id
         label: ID（連番）
         type: number
