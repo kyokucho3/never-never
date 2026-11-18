@@ -28,10 +28,11 @@ content:
       - name: date
         label: 詠んだ日
         type: date
-        format: "yyyy-MM-dd"
+        options:
+          format: yyyy-MM-dd
       - name: text
         label: 短歌本文
-        type: string
+        type: text
         required: true
       - name: note
         label: 詞書・ひとこと（任意）
