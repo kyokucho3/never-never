@@ -1,0 +1,65 @@
+# .pages.yml - Pages CMS configuration for kyokucho3.com
+# Place this file in the root of your repository (same level as package.json)
+
+media:
+  input: public/images
+  output: /images
+
+content:
+  # 短歌（src/content/tanka）
+  - name: tanka
+    label: 短歌
+    type: collection
+    path: src/content/tanka
+    # ファイル名はslugを手入力（例: 11th.md, summer-rain.md）
+    filename:
+      template: "{slug}.md"
+      field: create
+    view:
+      primary: body
+      fields: [date, note]
+    fields:
+      - name: id
+        label: ID（連番）
+        type: number
+        required: true
+      - name: date
+        label: 詠んだ日
+        type: date
+        format: "yyyy-MM-dd"
+      - name: body
+        label: 短歌本文
+        type: string
+        required: true
+      - name: note
+        label: 詞書・ひとこと（任意）
+        type: string
+
+  # 雑記（src/content/blog）
+  - name: blog
+    label: 雑記
+    type: collection
+    path: src/content/blog
+    # ファイル名はslugを手入力（例: tsukanoma.md, first-post.md）
+    filename:
+      template: "{slug}.md"
+      field: create
+    fields:
+      - name: id
+        label: ID（連番）
+        type: number
+        required: true
+      - name: title
+        label: タイトル
+        type: string
+        required: true
+      - name: date
+        label: 日付
+        type: date
+        format: "yyyy-MM-dd"
+      - name: excerpt
+        label: 一言・要約（一覧に出る文）
+        type: string
+      - name: body
+        label: 本文
+        type: rich-text
