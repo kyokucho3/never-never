@@ -19,7 +19,7 @@ const tanka = defineCollection({
     schema: z.object({
         id: z.number(),
         title: z.string().optional(),
-        date: z.string(),
+        date: z.coerce.string(),
         text: z.string().optional,
         body: z.string().optional,
         note: z.string().optional(),
